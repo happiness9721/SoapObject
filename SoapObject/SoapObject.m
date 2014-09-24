@@ -44,8 +44,8 @@
             soapMsg = [soapMsg stringByAppendingFormat:@"<%@>%@</%@>", key, [dictionary objectForKey:key], key];
         }
         soapMsg = [soapMsg stringByAppendingFormat:@"</%@>"
-         "</soap:Body>"
-         "</soap:Envelope>", self.functionName];
+                   "</soap:Body>"
+                   "</soap:Envelope>", self.functionName];
         
         // 创建URL，内容是前面的请求报文报文中第二行主机地址加上第一行URL字段
         NSURL *url = [NSURL URLWithString:self.url];
@@ -110,7 +110,7 @@
 }
 
 //parser <>XXXXXX
--(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     if (parserCurrent.length)
     {
@@ -129,9 +129,15 @@
 }
 
 //parser結束
--(void) parserDidEndDocument:(NSXMLParser *)parser
+- (void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    [self.delegate soapObject:self didfinishLoadArray:parserArray];
+    [self didfinishLoadArray:parserArray];
+}
+
+//override this fuction
+- (void)didfinishLoadArray:(NSArray *)array
+{
+    [self.delegate soapObject:self didfinishLoadArray:array];
 }
 
 @end

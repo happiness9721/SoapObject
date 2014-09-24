@@ -17,13 +17,14 @@
 
 @end
 
-
 @interface SoapObject : NSObject
 
-@property (weak) id<SoapObjectDelegate> delegate;
 @property NSString *url;
 @property NSString *functionName;
+@property (weak) id<SoapObjectDelegate> delegate;
 
 - (void)connectionWithDictionary:(NSDictionary *)dictionary version:(CGFloat)version;
+//customize your function by override this function
+- (void)didfinishLoadArray:(NSArray *)array;
 
 @end
