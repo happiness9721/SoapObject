@@ -21,6 +21,7 @@
 
 @property NSString *url;
 @property NSString *functionName;
+@property NSString *domainName;
 @property (weak) id<SoapObjectDelegate> delegate;
 
 - (void)connectionWithDictionary:(NSDictionary *)dictionary version:(CGFloat)version;
