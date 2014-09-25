@@ -13,7 +13,7 @@
 @protocol SoapObjectDelegate <NSObject>
 
 @optional
-- (void)soapObject:(SoapObject *)soapObject didfinishLoadArray:(NSArray *)array;
+- (void)soapObject:(SoapObject *)soapObject didfinishLoadDictionary:(NSDictionary *)dictionary;
 
 @end
 
@@ -25,7 +25,5 @@
 @property (weak) id<SoapObjectDelegate> delegate;
 
 - (void)connectionWithDictionary:(NSDictionary *)dictionary version:(CGFloat)version;
-//customize your function by override this function
-- (void)didfinishLoadArray:(NSArray *)array;
 
 @end

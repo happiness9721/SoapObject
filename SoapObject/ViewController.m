@@ -35,8 +35,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)soapObject:(SoapObject *)soapObject didfinishLoadArray:(NSArray *)array {
-    NSLog(@"%@", array);
+- (void)soapObject:(SoapObject *)soapObject didfinishLoadDictionary:(NSDictionary *)dictionary
+{
+    NSLog(@"%@", dictionary);
 }
 
 @end
