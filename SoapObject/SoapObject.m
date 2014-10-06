@@ -37,7 +37,7 @@ NSString *const kXMLReaderAttributePrefix	= @"@";
     return self;
 }
 
-- (void)connectionWithDictionary:(NSDictionary *)dictionary version:(CGFloat)version;
+- (void)connectionWithVersion:(CGFloat)version
 {
     if (isFinished)
     {
@@ -46,9 +46,9 @@ NSString *const kXMLReaderAttributePrefix	= @"@";
                              @"<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">"
                              "<soap:Body>"
                              "<%@ xmlns=\"%@\">", self.functionName, (self.domainName ? self.domainName : @"http://tempuri.org/")];
-        for (NSString *key in [dictionary allKeys])
+        for (NSString *key in [self.parameterDictionary allKeys])
         {
-            soapMsg = [soapMsg stringByAppendingFormat:@"<%@>%@</%@>", key, [dictionary objectForKey:key], key];
+            soapMsg = [soapMsg stringByAppendingFormat:@"<%@>%@</%@>", key, [self.parameterDictionary objectForKey:key], key];
         }
         soapMsg = [soapMsg stringByAppendingFormat:@"</%@>"
                    "</soap:Body>"
@@ -78,6 +78,7 @@ NSString *const kXMLReaderAttributePrefix	= @"@";
     }
     
 }
+
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
